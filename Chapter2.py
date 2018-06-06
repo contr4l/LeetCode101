@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(100)
+
 """
 2.1 插入排序
     存在序列（a1,a2,a3...,an），每次取出一个数插入新序列并维护正确顺序,时间复杂度O(n^2)。
@@ -122,16 +125,93 @@ def Merge(lst1,lst2):
     res += lst2[j:]
     return res
 
-# 上述归并排序在Merge函数中引入了新列表res，将多占用N的内存，下为对自身列表进行操作的函数MergeSort()
-# 由于是对列表本身的操作，甚至不需要return，类似于sort()
-def MergeSort_S(lst,p,q):
-    if p<q:
-        r = (p+q)//2
-        MergeSort_S(lst,p,r)
-        MergeSort_S(lst,r,q)
-        Merge_S(lst,p,q,r)
-
+# 对列表本身进行操作的归并排序
 def Merge_S(lst,p,q,r):
+    L = lst[p:q+1]+[10000]
+    R = lst[q+1:r+1]+[10000]
+    i = j = 0
+    for k in range(p,r+1):
+        if L[i]<=R[j]:
+            lst[k]=L[i]
+            i += 1
+        else:
+            lst[k]=R[j]
+            j += 1
 
-print(MergeSort([9,8,7,5,4,3,2,1,0]))
+def MergeSort_S(lst,p,r):
+    if p<r:
+        q = (p+r) // 2
+        MergeSort_S(lst,p,q)
+        MergeSort_S(lst,q+1,r)
+        Merge_S(lst,p,q,r)
+    return lst
 
+"""
+Ex. 2.3-2 重写Merge_S，不使用哨兵
+"""
+def Merge_S2(lst,p,q,r):
+    L = lst[p:q+1]
+    R = lst[q+1:r+1]
+    i = j = 0
+    k = p
+    while i<q+1-p and j<r-q:
+        if L[i]<=R[j]:
+            lst[k]=L[i]
+            i += 1
+        else:
+            lst[k]=R[j]
+            j += 1
+        k += 1
+    if i == q+1-p:
+        lst[k:r+1] = R[j:]
+    else:
+        lst[k:r+1] = L[i:]
+
+"""
+*Ex. 2.3-7 描述一个O(nlgn)的算法，给定集合S和整数x，确定S中是否有两个数之和为x
+"""
+# 先构造一个二分查找的函数
+def BinarySearch(sorted_list,x):
+    lw = 0
+    hg = len(sorted_list)-1
+    while lw<hg-1:
+        mid = (lw + hg) // 2
+        if sorted_list[lw] == x: return lw
+        if sorted_list[mid] == x: return mid
+        if sorted_list[hg] == x: return hg
+        if sorted_list[mid] < x:
+            lw = mid
+        else:
+            hg = mid
+    return -1
+
+def SearchSum(S,x):
+    MergeSort_S(S,0,len(S)-1)
+    for pos,i in enumerate(S):
+        if BinarySearch(S,x-i) not in (pos,-1):
+            return True
+    return False
+
+"""
+Ex. 2-2 冒泡排序
+"""
+def BubbleSort(lst):
+    k = 0
+    while k < len(lst)-1:
+        i = 0
+        while i < len(lst)-k-1:
+            if lst[i]>lst[i+1]:
+                lst[i],lst[i+1] = lst[i+1],lst[i]
+            i += 1
+        k += 1
+        print(lst)
+    return lst
+
+"""
+Ex. 2-4 逆序对数量
+"""
+def InversionNum(lst):
+
+
+
+print(BubbleSort([9,8,7,6,5,4,3,2,1]))
