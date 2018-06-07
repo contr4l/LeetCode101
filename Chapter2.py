@@ -208,10 +208,35 @@ def BubbleSort(lst):
     return lst
 
 """
-Ex. 2-4 逆序对数量
+Ex. 2-4 逆序对数量: 对于list A，若存在 i<j 且 A[i]>A[j]，则称为一个逆序对
+例：[3,2,1]中存在3个逆序对(3,1),(3,2),(2,1)
 """
 def InversionNum(lst):
+    # 改写归并排序,在归并排序中，每当R部分元素先于L部分元素插入原列表时，逆序对数要加L剩余元素数
+    if len(lst) == 1:
+        return lst,0
+    else:
+        n = len(lst) // 2
+        lst1,count1 = InversionNum(lst[0:n])
+        lst2,count2 = InversionNum(lst[n:len(lst)])
+        lst,count = Count(lst1,lst2,0)
+        return lst,count1+count2+count
+
+def Count(lst1, lst2,count):
+    i = 0
+    j = 0
+    res = []
+    while i < len(lst1) and j < len(lst2):
+        if lst1[i] <= lst2[j]:
+            res.append(lst1[i])
+            i += 1
+        else:
+            res.append(lst2[j])
+            count += len(lst1)-i
+            j += 1
+    res += lst1[i:]
+    res += lst2[j:]
+    return res,count
 
 
-
-print(BubbleSort([9,8,7,6,5,4,3,2,1]))
+print(InversionNum([11,10,9,8,7,6,5,4,3,2,1]))
