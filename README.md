@@ -1,1 +1,3 @@
-# 算法导论
+# LeetCode101 - A LeetCode Grinding Guide
+
+Thanks and regards to author ChangGao.
