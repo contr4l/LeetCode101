@@ -37,7 +37,6 @@ public:
         }
         int l = 0, r = s.size() - 1;
         while (l <= r) {
-            // shift right
             if (_map_t[s[r]] != 0 && (_map_s[s[r]] == _map_t[s[r]])) {
                 break;
             }
@@ -45,7 +44,6 @@ public:
             r--;
         }
         while (l <= r) {
-            // shift right
             if (_map_t[s[l]] != 0 && (_map_s[s[l]] == _map_t[s[l]])) {
                 break;
             }
@@ -53,7 +51,7 @@ public:
             l++;
         }
 
-        if (l == r){
+        if (l == r) {
             return s.substr(l, 1);
         }
 
@@ -67,18 +65,14 @@ public:
                 r++;
                 if (r < s.size())
                     _map_s[s[r]]++;
-                
             }
             if (r == s.size())
                 break;
 
             _map_s[s[l]]--;
             l++;
-            // cout << l << " to " << r << endl;
-            // cout << s.substr(l, r-l+1) << endl;
-            
             while (l < r) {
-                if (_map_t[s[l]] !=0 &&_map_s[s[l]] <= _map_t[s[l]]){
+                if (_map_t[s[l]] != 0 && _map_s[s[l]] <= _map_t[s[l]]) {
                     break;
                 }
                 _map_s[s[l]]--;
@@ -89,9 +83,6 @@ public:
                 pos = l;
                 len = r - l + 1;
             }
-            // cout << l << " " << r << endl;
-            // cout << s.substr(l, r-l+1) << endl;
-
         }
         cout << pos << " " << len << endl;
         return s.substr(pos, len);
