@@ -4,7 +4,7 @@
  * [135] 分发糖果
  */
 #ifdef LC_TEST
-#include "utils.h"
+#include "utils.hpp"
 #else
 #include <algorithm>
 #include <iostream>

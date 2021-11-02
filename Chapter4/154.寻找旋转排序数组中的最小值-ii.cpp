@@ -11,7 +11,7 @@
 #include <iostream>
 using namespace std;
 #else
-#include "utils.h"
+#include "utils.hpp"
 #endif
 // @lc code=start
 class Solution {

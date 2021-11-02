@@ -13,7 +13,7 @@
 
 using namespace std;
 #else
-#include "utils.h"
+#include "utils.hpp"
 #endif
 // @lc code=start
 bool char_cmp(string& a, string& b) {

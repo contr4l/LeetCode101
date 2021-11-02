@@ -11,7 +11,7 @@
 
 using namespace std;
 #else
-#include "utils.h"
+#include "utils.hpp"
 #endif
 
 /*

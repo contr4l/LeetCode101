@@ -10,7 +10,7 @@
 #include <iostream>
 using namespace std;
 #else
-#include "utils.h"
+#include "utils.hpp"
 #endif
 // @lc code=start
 bool start_cmp(vector< int >& a, vector< int >& b) {

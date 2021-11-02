@@ -6,7 +6,7 @@
 
 // @lc code=start
 #ifdef LC_TEST
-#include "utils.h"
+#include "utils.hpp"
 #else
 #include <algorithm>
 #include <iostream>
