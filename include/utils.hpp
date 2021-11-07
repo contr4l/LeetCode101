@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <set>
+#include <string.h>
 using namespace std;
 
 template <typename T>
